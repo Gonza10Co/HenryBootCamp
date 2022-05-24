@@ -3,10 +3,9 @@
 function BinarioADecimal(num) {
   // tu codigo aca
   let n = num.toString();
-  let numArray = n.split('');
   let sum = 0;
-  for (let i = 0; i < numArray.length; i++) {
-    sum += numArray[numArray.length-1-i] * Math.pow(2,i);
+  for (let i = 0; i < n.length; i++) {
+    sum += n[n.length-1-i] * Math.pow(2,i);
   }
   return sum;
 }
