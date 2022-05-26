@@ -7,6 +7,11 @@ Determiná que será impreso en la consola, sin ejecutar el código.
 
 > Investiga cuál es la diferencia entre declarar una variable con `var` y directamente asignarle un valor.
 
+Con Var:
+Esta sintaxis se puede utilizar para declarar variables locales y globales, dependiendo del contexto de ejecución.
+
+Sin declaracion: También puedes simplemente asignar un valor a una variable. Por ejemplo, x = 42. Este formulario crea una variable global no declarada. También genera una advertencia estricta de JavaScript. Las variables globales no declaradas a menudo pueden provocar un comportamiento inesperado. Por lo tanto, se desaconseja utilizar variables globales no declaradas.
+
 ```javascript
 x = 1;
 var a = 5;
@@ -28,6 +33,9 @@ c(8,9,10);
 console.log(b);
 console.log(x);
 ```
+x=1
+a=5
+b=10
 
 ```javascript
 console.log(bar);
@@ -37,6 +45,7 @@ function foo() { console.log('Hola!'); }
 var bar = 1;
 baz = 2;
 ```
+Error baz no declarada
 
 ```javascript
 var instructor = "Tony";
@@ -45,6 +54,7 @@ if(true) {
 }
 console.log(instructor);
 ```
+// instructor=Franco
 
 ```javascript
 var instructor = "Tony";
@@ -57,6 +67,9 @@ console.log(instructor);
 })();
 console.log(instructor);
 ```
+Tony
+Franco
+Tony
 
 ```javascript
 var instructor = "Tony";
@@ -70,27 +83,32 @@ if (true) {
 console.log(instructor);
 console.log(pm);
 ```
+the flash
+reverse flash
+the flash
+franco
+
 ### Coerción de Datos
 
 ¿Cuál crees que será el resultado de la ejecución de estas operaciones?:
 
 ```javascript
-6 / "3"
-"2" * "3"
-4 + 5 + "px"
-"$" + 4 + 5
-"4" - 2
-"4px" - 2
-7 / 0
-{}[0]
-parseInt("09")
-5 && 2
-2 && 5
-5 || 0
-0 || 5
-[3]+[3]-[10]
-3>2>1
-[] == ![]
+6 / "3" 2
+"2" * "3" 6
+4 + 5 + "px" 9px
+"$" + 4 + 5 $45
+"4" - 2 = 2
+"4px" - 2 NaN
+7 / 0 infinity
+{}[0] Array(1)[0]
+parseInt("09") 9
+5 && 2 =2
+2 && 5 =2
+5 || 0 =5
+0 || 5 =5 no entendi
+[3]+[3]-[10] = 23
+3>2>1 false
+[] == ![] true no entendi
 ```
 
 > Si te quedó alguna duda repasá con [este artículo](http://javascript.info/tutorial/object-conversion).
@@ -113,6 +131,8 @@ function test() {
 
 test();
 ```
+a undefined
+2
 
 Y el de este código? :
 
@@ -129,6 +149,7 @@ function getFood(food) {
 
 getFood(false);
 ```
+Meow Mix
 
 
 ### This
