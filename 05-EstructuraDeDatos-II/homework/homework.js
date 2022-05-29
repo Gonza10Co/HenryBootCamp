@@ -11,9 +11,62 @@ Implementar la clase LinkedList, definiendo los siguientes métodos:
   En caso de que la búsqueda no arroje resultados, search debe retornar null.
 */
 
-function LinkedList() {}
+function LinkedList() {//creo una clase de linked list
+  this.head = null;//creo el primer vagon vacion
+}
 
-function Node(value) {}
+function Node(value) {//creo las caracteristicas de cada vagon (objeto)
+  this.value = value;//cada vagon debe tener una propiedad valor
+  this.next = null;//cada vagon debe tener una propiedad next (vinculo) inicial/ null
+}
+
+LinkedList.prototype.add = function (value) {//funcion que agrega valores prototipo de linked list
+  const node = new Node(value);//lo creo como tipo Node (props valor,next)
+  if (!this.head) {//si el primer vagon no existe
+    this.head = node;//lo creo, es decir le agrego valor y next
+  } else {//si hay primer vagon
+    let current = this.head;//me paro en el primer vagon
+    while (current.next) {//mientras este vagon tenga una propiedad next
+      current = current.next;//salto al siguiente vagon
+    }
+    current.next = node;//cuando estoy en el ultimo vagon le agrego otro vagon a next
+  }
+}
+
+LinkedList.prototype.remove = function (value) {
+  if (!this.head) return null;
+  let penultimo = this.head;
+  if (!penultimo.next) {//si solo hay un elemento
+    let miVal = penultimo.value;//asigo el valor a una variable
+    delete penultimo.value;//borro value
+    delete penultimo.next;//borro next
+    this.head = null;//asigno null a head
+    return miVal;//retorno la variable
+  }
+  while (penultimo.next.next) {//mientras hayan dos vagones adelante
+    penultimo = penultimo.next;//salto un vagon
+  }//llegue al penultimo vagon
+  let miVal = penultimo.next.value;//asigno el valor a una variable
+  penultimo.next = null;//asigno null a next
+  return miVal;
+}
+
+LinkedList.prototype.search = function (value) {
+  if (!this.head) return null;//si no hay primer vagon paila
+  let ultimo = this.head;//me paro en el primer vagon
+  if (typeof (value) === 'function') {//si el argumento es funcion
+    while (!value(ultimo.value)) {//si retorna false
+      if (!ultimo.next) return null;//si no hay mas vagones, paila
+      ultimo = ultimo.next;//salto al siguiente vagon
+    }
+  } else {
+    while (ultimo.value != value) {//si el valor del vagon es dif a value
+      if (!ultimo.next) return null;//si no hay mas vagones, paila
+      ultimo = ultimo.next;//salto al siguiente vagon
+    }
+  }
+  return ultimo.value;
+}
 
 /*
 Implementar la clase HashTable.
@@ -30,7 +83,51 @@ La clase debe tener los siguientes métodos:
 Ejemplo: supongamos que quiero guardar {instructora: 'Ani'} en la tabla. Primero puedo chequear, con hasKey, si ya hay algo en la tabla con el nombre 'instructora'; luego, invocando set('instructora', 'Ani'), se almacenará el par clave-valor en un bucket específico (determinado al hashear la clave)
 */
 
-function HashTable() {}
+function HashTable() {//creo una clase HashTable con:
+  this.closet = [];//creo una lista vacia
+  this.numBuckets = 35;//creo 35 cajones
+}
+
+HashTable.prototype.hash = function (miString) {//funcion q asigna la posicion
+  let acum = 0;
+  for (let i = 0; i < miString.length; i++) {//recorre la cadena
+    acum += miString.charCodeAt(i);//acumula el valor
+  }
+  return acum % this.numBuckets;//retorna el modulo
+}
+
+HashTable.prototype.set = function (clave, valor) {
+  if (typeof clave !== 'string') throw new TypeError('Keys must be strings');//creo el tipo de error
+  let mibucket = this.hash(clave);//asigno a mibucket la posicion de clave
+  let micloset = this.closet;//asigno a mi closet una matriz vacia
+  if(!micloset[mibucket] || micloset[mibucket].clave === clave) {//si el espacio esta vacio o si tiene la misma clave
+    micloset[mibucket] = {
+      clave,
+      valor,
+    }
+  } else {//si el espacio esta ocupado con otro valor
+      micloset[mibucket].clave2 = clave;//creo otra propiedad clave2
+      micloset[mibucket].valor2 = valor;//con su respectivo valor, valor2
+  }  
+  return mibucket;//retorno la posicion donde cree el bucket 
+}
+
+HashTable.prototype.get = function (key) {
+  let micloset = this.closet;//creo una matriz
+  for (let i = 0; i < this.numBuckets; i++) {//recorro los cajones
+    if (micloset[i] && micloset[i].clave === key) return micloset[i].valor;//si encuentra clave retorna valor
+    if (micloset[i] && micloset[i].clave2 === key) return micloset[i].valor2; //si encuentra clave 2 retorna valor2
+  }
+}
+
+HashTable.prototype.hasKey = function (key) {
+  let micloset = this.closet;//creo una matriz
+  for (let i = 0; i < this.numBuckets; i++) {//recorro los cajones
+    if (micloset[i] && micloset[i].clave === key) return true;//si encuentra clave retorna true
+    if (micloset[i] && micloset[i].clave2 === key) return true;  //si encuentra clave 2 retorna false
+  }
+  return false
+}
 
 // No modifiquen nada debajo de esta linea
 // --------------------------------

@@ -15,19 +15,13 @@ Como ejercicio adicional y completamente opcional, al terminar de resolver este 
 */
 
 function nFactorial(val) {
-  let resultado=0;
   if (val <= 1) return 1;
-  resultado += val * (val-1);
-  resultado *= nFactorial(val-2)
-  return resultado
+  return val * nFactorial(val - 1);
 }
 
 function nFibonacci(n) {
-    let miFibo = 0
-  if (n <= 0) return 0;
-  if (n === 1) return 1;
-  miFibo = nFibonacci(n - 1) + nFibonacci(n - 2);
-  return miFibo;
+  if (n <= 1) return n;
+  return  nFibonacci(n - 1) + nFibonacci(n - 2);
 }
 
 /*
