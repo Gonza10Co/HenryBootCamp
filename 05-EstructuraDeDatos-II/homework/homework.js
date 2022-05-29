@@ -21,7 +21,7 @@ function Node(value) {//creo las caracteristicas de cada vagon (objeto)
 }
 
 LinkedList.prototype.add = function (value) {//funcion que agrega valores prototipo de linked list
-  const node = new Node(value);//lo creo como tipo Node (props valor,next)
+  const node = new Node(value);//Instancion node como Node (props valor,next)
   if (!this.head) {//si el primer vagon no existe
     this.head = node;//lo creo, es decir le agrego valor y next
   } else {//si hay primer vagon
@@ -84,8 +84,8 @@ Ejemplo: supongamos que quiero guardar {instructora: 'Ani'} en la tabla. Primero
 */
 
 function HashTable() {//creo una clase HashTable con:
-  this.closet = [];//creo una lista vacia
   this.numBuckets = 35;//creo 35 cajones
+  this.closet = new Array(this.numBuckets);//creo una lista vacia
 }
 
 HashTable.prototype.hash = function (miString) {//funcion q asigna la posicion
@@ -100,32 +100,18 @@ HashTable.prototype.set = function (clave, valor) {
   if (typeof clave !== 'string') throw new TypeError('Keys must be strings');//creo el tipo de error
   let mibucket = this.hash(clave);//asigno a mibucket la posicion de clave
   let micloset = this.closet;//asigno a mi closet una matriz vacia
-  if(!micloset[mibucket] || micloset[mibucket].clave === clave) {//si el espacio esta vacio o si tiene la misma clave
-    micloset[mibucket] = {
-      clave,
-      valor,
-    }
-  } else {//si el espacio esta ocupado con otro valor
-      micloset[mibucket].clave2 = clave;//creo otra propiedad clave2
-      micloset[mibucket].valor2 = valor;//con su respectivo valor, valor2
-  }  
-  return mibucket;//retorno la posicion donde cree el bucket 
+  if (!micloset[mibucket]) micloset[mibucket] = {};
+  micloset[mibucket][clave] = valor;
 }
 
 HashTable.prototype.get = function (key) {
-  let micloset = this.closet;//creo una matriz
-  for (let i = 0; i < this.numBuckets; i++) {//recorro los cajones
-    if (micloset[i] && micloset[i].clave === key) return micloset[i].valor;//si encuentra clave retorna valor
-    if (micloset[i] && micloset[i].clave2 === key) return micloset[i].valor2; //si encuentra clave 2 retorna valor2
-  }
+  let mibucket = this.hash(key);//Busco donde esta mibucket, no tengo q recorrer
+  if (this.closet[mibucket]) return this.closet[mibucket][key];
 }
 
 HashTable.prototype.hasKey = function (key) {
-  let micloset = this.closet;//creo una matriz
-  for (let i = 0; i < this.numBuckets; i++) {//recorro los cajones
-    if (micloset[i] && micloset[i].clave === key) return true;//si encuentra clave retorna true
-    if (micloset[i] && micloset[i].clave2 === key) return true;  //si encuentra clave 2 retorna false
-  }
+  let mibucket = this.hash(key);//Busco donde esta mibucket, no tengo q recorrer
+  if (this.closet[mibucket].hasOwnProperty(key)) return true;
   return false
 }
 
