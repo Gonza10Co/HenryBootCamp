@@ -111,8 +111,7 @@ HashTable.prototype.get = function (key) {
 
 HashTable.prototype.hasKey = function (key) {
   let mibucket = this.hash(key);//Busco donde esta mibucket, no tengo q recorrer
-  if (this.closet[mibucket].hasOwnProperty(key)) return true;
-  return false
+  return this.closet[mibucket].hasOwnProperty(key);
 }
 
 // No modifiquen nada debajo de esta linea
