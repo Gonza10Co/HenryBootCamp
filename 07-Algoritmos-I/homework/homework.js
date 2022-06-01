@@ -6,16 +6,15 @@ function factorear(num) {
   // los factores por los cuales se va dividiendo a dicho número (De menor a mayor)
   // Ej: factorear(180) --> [1, 2, 2, 3, 3, 5] Ya que 1x2x2x3x3x5 = 180 y son todos números primos
   // Tu código:
-  const miPrimos = [2, 3, 5, 7, 11];
+  let i = 2;
   const miArray = [1];
-  let pos = 0;
 
   while (num > 1) {
-    if (num % miPrimos[pos] === 0) {
-      miArray.push(miPrimos[pos]);
-      num /= miPrimos[pos];
+    if (num % i === 0) {
+      miArray.push(i);
+      num /= i;
     } else {
-      pos++
+      i++;
     }
   }
   return miArray
