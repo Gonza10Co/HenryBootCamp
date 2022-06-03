@@ -1,4 +1,7 @@
+//Esto esta en el video de repaso del cohorte 19a Diego Rodriguez del M1
+
 class NodeBST {
+    static _cache = {};//mi cache mi memoria
     constructor(value) {
         this.value = value;
         this.left = null;
@@ -6,10 +9,13 @@ class NodeBST {
     }
 
     _size(value) {//Privado
-        let result = 0;
-        for (let i = o; i < value.length; i++) {
-            result += value.charCodeAt(i);
+        if (!NodeBST._cache.hasOwnProperty(value)) {//Si no tiene guardado en cache, hace el calculo
+            let result = 0;
+            for (let i = o; i < value.length; i++) {
+                result += value.charCodeAt(i);
             }
+            NodeBST._cache[value] = result;
+        }
         return result    
     }
 
@@ -35,7 +41,6 @@ class NodeBST {
         //Si voy a contar la cantidad de nodos, omito la linea de abajo y el count en 1.
         this.value === value && count++;//es una condicional, si true aumenta contador
         
-
         //Si quiero saber cuantos niveles tiene, pregunto cual de estos dos tiene el valor mas grande. 
         if (this.left) count += this.left.count(value);
         if (this.right) count += this.right.count(value);

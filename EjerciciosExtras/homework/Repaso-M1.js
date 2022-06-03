@@ -42,6 +42,7 @@ var countArray = function(array) {
 
 var countProps = function(obj) {
     // Necesito un caso base para poder hacer recursión
+    // El caso base es una variable que se define al ppio, acumula y retorna?
     var count = Object.keys(obj).length
     for (const k in obj) {
         if (typeof obj[k] === 'object' && !Array.isArray(obj[k])) count += countProps(obj[k]);
