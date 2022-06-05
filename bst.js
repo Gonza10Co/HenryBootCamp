@@ -27,7 +27,7 @@ class NodeBST {
             if (this.left)
                 this.left.add(value);
             else
-                this.left = new Node(value);
+                this.left = new NodeBST(value);
         } else {
             if (this.right)
                 this.right.add(value);
