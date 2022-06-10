@@ -50,7 +50,6 @@ ToDo.prototype.completeToDo = function () {
 //    7) Agregar 'toDoText' como hijo de 'toDoShell'
 //    8) Devolver la variable toDoShell
 
-
 function buildToDo(objToDo, index) {
   // Tu código acá:
   const toDoShell = document.createElement("div");
