@@ -1,0 +1,375 @@
+REACT CCS
+CLASE 07 REACT - ESTILOS
+https://www.students.soyhenry.com/classes/15?cohortId=23
+
+Para crear un nuevo proyecto React en node:
+npx create-react-app my-app
+cd NOMBRE PROYECTO
+npm start
+
+Normalizar CCS
+npm install normalize.css
+Ahora en el index.js agregar import 'normalize.css'
+
+Dentro del src crear carpeta components y archivo Layout.js
+esto para crear un componente Layout
+
+function Layout({ children }) {
+return <div className="Layout"> { children } </div>
+}
+
+export default Layout
+
+Cuando uso la propiedad children lo que sucede es que yo pongo como hijo esa data que yo puse
+
+export default Layout;
+
+Aca tengo mi componente layout
+
+Ahora en App.js
+
+import Layout from ....
+
+function App() {
+return <Layout>
+Ej funciona
+</Layout>
+}
+
+en el index.css
+
+.Layout {
+display: grid;
+height: 100%; //de la altura visible de mi view port
+min-height : 100vh; //Altura minima
+grid-template-columns: 1fr; //1 fraccion
+grid-template-rows: 4rem 1fr 8 rem; //La primera fila va a tener 64px o (4rem). La parte de adentro quiero que tenga un tamano automatico, 1fr y como ultimo quiero hacer un footer bastante alto, quiero que tenga 8 rem. 
+}
+
+Crear carpeta en src q se llame assets
+Descargo imagen tamano grande CAFE
+unsplash.com/photos/obV_LMOKjsY
+Paso la imagen a la carpeta
+a la img background le pongo bkg
+
+Para poner esa imagen como fondo en Layout.js
+import bkg from '../assets/bkg.jpg'
+
+function Layout({ children }) {
+return <div className="Layout"> 
+<img style={{
+	height: "100vh", //100 viewheigh
+	width: 100%,
+	objectFit: "cover", //en CCS seria object-fit, para q la imagen no se estire
+}} src={bkg} alt="" />//doble llave porque le paso un objeto
+<div style={{//Ahora voy a aplicarle un div para darle un color mas oscuro pero trasparente
+	height: "100vh",
+	width: "100%,
+	backgroundColor: "#000066"
+
+{ children } </div>
+}
+
+no me quedo bien porque hizo la opacidad en un "piso diferente" agrego position a Layout y a index.css
+
+function Layout({ children }) {
+return <div className="Layout"> 
+<img style={{
+	height: "100vh", //100 viewheigh
+	width: 100%,
+	objectFit: "cover", //en CCS seria object-fit, para q la imagen no se estire
+	position: 'absolute',
+	zIndex: -1,
+}} src={bkg} alt="" />//doble llave porque le paso un objeto
+<div style={{//Ahora voy a aplicarle un div para darle un color mas oscuro pero trasparente
+	height: "100vh",
+	width: "100%,
+	backgroundColor: "#000033"
+	position: 'absolute',
+{ children } </div>
+}
+
+en el index.css
+
+.Layout {
+display: grid;
+height: 100%; //de la altura visible de mi view port
+min-height : 100vh; //Altura minima
+grid-template-columns: 1fr; //1 fraccion
+grid-template-rows: 4rem 1fr 8 rem; //La primera fila va a tener 64px o (4rem). La parte de adentro quiero que tenga un tamano automatico, 1fr y como ultimo quiero hacer un footer bastante alto, quiero que tenga 8 rem. 
+position:relative;
+}
+
+Ahi ya quedo bien 
+
+La idea ahora es hacer un degrade.
+Buscar en google CCS Gradient
+Abre una pagina CCS Gradient y le pongo los dos colores
+Abajo dan las lineas que se deben poner en ese background
+
+
+cambiar por 
+background: linear-gradient(180deg, regba(0,0,0,0.30) 0%, rgba(0,0,0,1) 100%);
+
+
+Ahora le voy a aplicar un header.
+Bajo una imagen para un logo
+creo el archivo en assets, logo.svg
+agrego en Layout.js
+import logo from "../assets/logo.svg";
+el logo queda tapado por el background por la propiedad z-index
+svg significa q es una imagen realizada con codigo
+Agregando el logo queda asi:
+
+
+function Layout({ children }) {
+return <div className="Layout"> 
+<img style={{
+	height: "100vh", //100 viewheigh
+	width: 100%,
+	objectFit: "cover", //en CCS seria object-fit, para q la imagen no se estire
+	position: 'absolute',
+	zIndex: -1,
+}} src={bkg} alt="" />//doble llave porque le paso un objeto
+<div style={{//Ahora voy a aplicarle un div para darle un color mas oscuro pero trasparente
+	height: "100vh",
+	width: "100%,
+	background: "linear-gradient(180deg, regba(0,0,0,0.30) 0%, rgba(0,0,0,1) 100%)";
+	position: 'absolute',
+	zIndex: -1,
+	}}
+/>
+<header className="header">
+	<img src={logo} alt="" />
+</header>
+
+{ children } </div>
+}
+
+en el index.css
+
+.Layout {
+display: grid;
+height: 100%; //de la altura visible de mi view port
+min-height : 100vh; //Altura minima
+grid-template-columns: 1fr; //1 fraccion
+grid-template-rows: 4rem 1fr 8 rem; //La primera fila va a tener 64px o (4rem). La parte de adentro quiero que tenga un tamano automatico, 1fr y como ultimo quiero hacer un footer bastante alto, quiero que tenga 8 rem. 
+position:relative;
+}
+
+.layout > header > img {
+	width: 3rem;
+	height: 3rem;
+	object-fit: contain; porque quiero q este contenida en ese lugar
+	margin: 0.5 rem
+}
+
+Cambiamos el tama;o del header
+Ademas, quiero que mi header tenga un ancho maximo de 960px y si se pasa que me lo centre en la pantalla.
+
+.Layout {
+display: grid;
+height: 100%; //de la altura visible de mi view port
+min-height : 100vh; //Altura minima
+grid-template-columns: 1fr; //1 fraccion
+grid-template-rows: 6rem 1fr 8 rem; //La primera fila va a tener 64px o (4rem). La parte de adentro quiero que tenga un tamano automatico, 1fr y como ultimo quiero hacer un footer bastante alto, quiero que tenga 8 rem. 
+position:relative;
+}
+
+.layout > header {
+	width: 100%;
+	max-width:960px; //para aplicar el max width primero necesito aplicar un width
+	margin: 0 auto; // esto para centrar mi header
+}
+
+.layout > header > img {
+
+	width: 5rem;
+	height: 5rem;
+	object-fit: contain; porque quiero q este contenida en ese lugar
+	margin: 0.5 rem
+}
+
+OJO. Las fracciones solo se trabajan con GRIDS
+
+Ahora voy a crear el menu, para eso voy a crear un componente que tenga los links adentro.
+
+Nuevo archivo en components Nav.js
+
+function Nav({ children }) {
+	return <nav> {children} </nav>
+}
+export default Nav
+
+A este nav le vamos a aplicar una manera diferente de dar estilos.
+
+Creamos en components Nav.module.css y ahi hacemos:
+.nav {
+	display: flex;
+	justify-content:center:
+}
+
+para aplicarle el estudio, dentro de Nav.js
+
+import styles from './Nav.module.css'
+
+function Nav({ children }) {
+	return <nav className = {styles.nav}> {children} </nav>;
+}
+export default Nav;
+
+Ahora este nav lo utilizo en el Layout.js en el header:
+
+Primero creo NavLink.js
+function NavLink ({to, text}) {
+	return <a href={to}>{text}<a>
+}
+
+export default NavLink
+
+en Layout.js
+import NavLink from "./NavLink";
+
+function Layout({ children }) {
+return <div className="Layout"> 
+<img style={{
+	height: "100vh", //100 viewheigh
+	width: 100%,
+	objectFit: "cover", //en CCS seria object-fit, para q la imagen no se estire
+	position: 'absolute',
+	zIndex: -1,
+}} src={bkg} alt="" />//doble llave porque le paso un objeto
+<div style={{//Ahora voy a aplicarle un div para darle un color mas oscuro pero trasparente
+	height: "100vh",
+	width: "100%,
+	background: "linear-gradient(180deg, regba(0,0,0,0.30) 0%, rgba(0,0,0,1) 100%)";
+	position: 'absolute',
+	zIndex: -1,
+	}}
+/>
+<header className="header">
+	<img src={logo} alt="" />
+	<Nav>
+		<NavLink to = "" text = "About" />
+		<NavLink to = "" text = "Variant" />
+		<NavLink to = "" text = "Contact" />
+</header>
+
+{ children } </div>
+}
+
+Creamos otro archivo NavLink.module.css
+.navLink {
+	text-decoration: none;
+	color: #ffffff
+	font-weight: bold;
+	font-family: 'Raleway', sans-serif;
+}
+
+fonts.google.com/specimen/Expletus+Sans etc importar
+en index.css importo url https:
+
+quiero que tenga mas espacio entre los menus
+
+.navLink + .navLink {//el mas es para decirle si tiene otro al lado
+	margin-left: 2rem;
+}
+
+En layout.js import NavLink from "./NavLink";
+
+En el index.css le pongo al 
+.layout > header {
+	position: relative;
+}
+.layout > header > img {
+	position: absolute;
+	left: 0;
+}
+
+a Nav.module.css agregar
+align-items: center;
+height: 100%;
+
+Minuto 54:27 del video
+
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+Martina Scomazoni - Resumen
+https://www.students.soyhenry.com/classes/15?cohortId=18
+
+buscar bootstrap for react x npm
+se pone como import button from bootstrap o algo asi
+
+En la clase se vieron 4 formas de aplicar los estilos en react
+
+1. Legacy.
+* Import 'archivo.css' -> nos definia estilos de forma global
+* al definir estilos de forma global -> corremos el riesgo de que se nos pisen los estilos
+* colisiones
+* No estamos componentizando -> vamos en contra de la filosofia de React
+	* que es trabajar con componentes de forma individual para luego reutilizar.
+* si no trabajo con npx -> configurar webpack.
+
+2. Inline Styles
+* No necesitamos configurar webpack
+* Perdemos los pseudo (hover)
+* Un agributo, o prop, style -> {prop: valor}, pero prop no puede tener -, por lo tanto debemos usar
+camelCase
+	* const obj {backgroundColor: green, color: white}
+	* <Producto style={obj}/>
+
+
+3. CSS Module 
+* Lo mejor de los dos mundos, podemos definir css local y css global.
+* si no uso npx, configurar webpack.
+	* si uso npx, los atrivos deben tener extension .modules.css -> local.css -> global
+* import s from './atchivo.modules.css'
+	* s = {clases definidas}
+	* s.nombredelaclase
+* <Producto className = {s.nombredelaclase} />
+<OtroComponente className = {`${s.nombredelaclase} {s.otraclase}`}/>
+* Define un hash unico para cada clase -> estilos locales
+
+4. Styled components
+* Instalar paquete
+* Un nuevo paradigma
+* Generamos componentes estilizados
+* Los puedo exportar e importar y reutilizar
+* Puedo generar estilos globales tambien
+* Los invoco como si fuesen un tag normal
+	<ComponenteEstilado>
+		<h1>hola</h1>
+	</ComponenteEstilado>
+
+	
+
+STYLED COMPONENTS
+
+Tenemos que instalar un paquete styled components.
+
+Los componentes los armamos ya con estilos.
+Puedo trabajar también con estilos globales.
+
+import styled 'from styled-components';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

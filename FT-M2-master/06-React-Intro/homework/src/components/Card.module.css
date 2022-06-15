@@ -1,0 +1,75 @@
+.card {
+
+    border: 1px solid black;
+    border-radius: 1rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr 2fr;
+    align-items: center;
+    position: relative;
+}
+
+.cityName {
+    grid-column: 1 / span 3;
+    font-size: 1.5rem;
+}
+
+.closeButton {
+    position: absolute;
+    right: 0.5rem;
+    top: 0.5rem;
+    font-size: 1.5rem;
+    color: var(--btn-danger-color);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    padding: 0.25rem;
+    
+    border-radius: 9999px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: transparent;
+    background-color: #fff;
+
+    transition: 250ms;
+}
+
+.closeButton:hover {
+    color: white;
+    background-color: var(--btn-danger-color);
+    cursor: pointer;
+
+}
+
+.temp {
+    display: flex;
+    flex-direction: column;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+@media screen and (min-width: 576px) {
+    .card {
+        width: 25rem;
+        max-width: 30rem;
+            margin: auto;
+    }
+}
+
+img {
+    height: 2.5rem;
+}
+
+/* fr: fraccion del tamano total
+Quiero que la fila de arriba ocupe la mitad de espacio q la fila de abajo
+
+CityName quiero que ocupe las 3 columnas de la primer fila
+
+Para dejar flotante el boton le voy a decir que tenga una posicion relativa
+Absoluto es anclado al elemento padre
+Relativo 
+
+tuve q instalar la dependencia de npm install react-icons
+ */
