@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <title>Document</title>
+    <style>
+      :root {
+        margin: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="like_button_container"></div>
+    <div id="app">Aca van las notas</div>
+    
+    <script type="text/babel">
+      // ****** CON COMPONENTE FUNCIONAL ******
+      const CounterFunction = () => {
+        const [contador, setContador] = React.useState(10);
+        const [show, setShow] = React.useState(false);
+        
+        const handleAdd = () => setContador(contador + 1);
+        const handleRemove = () => setContador(contador - 1);
+        const handleAddX2 = () => {
+          setContador((contador)=>(contador + 1));
+          setContador((contador)=>(contador + 1));
+        }
+
+        return (
+          <div>
+            <button onClick={handleRemove}>-</button>
+            <span  style={{ margin: "1rem" }}>El valor del contador es: {contador}</span>
+            <button onClick={handleAdd}>+</button>
+            <button onClick={handleAddX2}>++</button>
+            <button onClick={() => setShow(!show)}>
+              {show ? "Hide counter class" : "Show counter class"}
+            </button>
+          </div>
+        )
+      }
+      
+      // useEffect(() => console.log('Se monto el componente Counter'));
+      // 
+
+      const miApp = document.getElementById('app');
+      ReactDOM.createRoot(miApp).render(
+      <div><CounterFunction/></div>
+      );
+
+    </script>
+    
+    <!-- Cargamos nuestro componente de React. -->
+    <!-- <script src="like_button.js"></script>
+    <script src="notas.js"></script> -->
+  </body>
+</html>

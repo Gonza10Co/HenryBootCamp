@@ -19,9 +19,7 @@ function App() {
       </div>
       <hr />
       <div>
-        <Cards
-          cities={data}
-        />
+        <Cards cities={data}/>
       </div>
       <hr />
       <div>

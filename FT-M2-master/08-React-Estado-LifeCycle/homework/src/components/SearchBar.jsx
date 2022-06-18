@@ -4,9 +4,12 @@ export default function SearchBar({onSearch}) {
   return (
     <form onSubmit={(e) => {
       e.preventDefault();
-      onSearch("Cairns");
+      const input = document.getElementById("myText")
+      onSearch(input.value);
+      input.value = "";
     }}>
       <input
+        id="myText"
         type="text"
         placeholder="Ciudad..."
       />

@@ -8,12 +8,12 @@ export default function Cards({cities, onClose}) {
     return (
       <div className='cards'>
         {cities.map(c => <Card
-            max={c.max}
-            min={c.min}
-            name={c.name}
-            img={c.img}
-            onClose={() => onClose(c.id)}
-            id={c.id}
+        key={c.name}//WARNING! Cualquier prop unica q lo identifique
+        max={c.max}
+        min={c.min}
+        name={c.name}
+        img={c.img}
+        onClose={() => onClose(c.id)}
           /> )}
       </div>
     );
