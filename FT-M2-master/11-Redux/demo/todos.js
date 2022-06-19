@@ -5,7 +5,6 @@ const createStore = redux.createStore;
 const ADD_TODO = 'ADD_TODO'
 const REMOVE_TODO = 'REMOVE_TODO';
 
-
 const initialState = {
   todos: []
 }
