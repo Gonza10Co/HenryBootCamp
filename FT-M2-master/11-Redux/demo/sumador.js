@@ -10,6 +10,12 @@ Paso 2. Ese reducer lo q hace es recibir un estado previo y una accion.
 
 Si yo importo la carpeta, es el index
 
+Orden de trabajo con Redux
+1. Construir el reducer.
+2. Definir las acciones
+3. Definir las action types
+4. Create el Store
+
 */
 
 const store = require("./store");
