@@ -1,0 +1,65 @@
+PASOS REACT REDUX
+
+Creo los botones, diseno, etc.
+
+SIN REDUX:
+1. Creo los estados [counter, setCounter]
+2. en el Layout, <Counter counter={counter}
+3. Creo los metodos increment y decrement
+4. en el Layout, <Counter counter={counter} increment={increment} decrement={decrement}/>
+5. En Counter.jsx creo el onClick en los botones q ejecute increment y decrement.
+
+CON REDUX:
+npm i redux redux-thunk
+npm i react-redux
+1. Creo carpeta src/store
+2. Creo archivo store/index.js
+2. Creo carpeta store/actions
+3. Creo archivo store/actions/action-types.js
+4. Creo archivo store/actions/index.js
+5. Creo carpeta store/reducers
+6. Creo archivo store/reducers/index.js
+7. Creo mis action-types: 
+  7.1. export const INC = 'increment'
+  7.2. export const DEC = 'decrement'
+8. import { INC, DEC } from './action-types';
+  8.1. export const incremet = () => ({ type: INC });
+  8.2. export const decrement = () => ({ type: DEC });
+9. En reducers/index.js 
+  9.1. Import {INC, DEC} from '../actions/action-types'
+  9.2. Creo initialState
+  9.3. Creo export def funct reducer
+      parametros (state = initialState, {type, payload}) y hago el switch con los casos 
+      INC:  {... state, count: state.count + 1}
+      DEC:  {... state, count: state.count - 1}
+      DEFAULT: state
+10. En store/index.js
+  10.1. Import {createStore} from 'redux'
+  10.2. Import reducer from '/reducers'
+  10.3. export default const store = createStore(reducer)
+**********************************************************
+11. Hacemos la conexion de la app de react con redux
+  11.1 En main.jsx
+    <React.StrictMode>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </React.StrictMode>
+12 En el componente counter agrego
+  12.1. const mapStateToProps = (state) => ({ counter: state.count });
+  12.2. export default connect(mapStateToProps)(Counter)
+13 Importamos las acciones
+  import {increment, decrement} from '../store/actions'
+  const mapDispatchToProps = (dispatch) => {
+  return {
+    increment: () => dispatch(increment()),
+    decrement: () => dispatch(decrement()),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Counter);
+  
+
+  
+
+  
