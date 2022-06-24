@@ -9,14 +9,14 @@ export class CommentsPost extends React.Component {
         super(props)
       } 
     
-     /* componentDidMount() {
+      componentDidMount() {
         const id = this.props.id
          this.props.getAllCommentsPost(id)
         .then(c =>{
           console.log("Comentarios cargados con éxito...")
         })
         .catch(err =>console.error(err))
-    }*/
+    }
 
     render() {
         const idPost = this.props.id
@@ -40,7 +40,7 @@ export class CommentsPost extends React.Component {
     }
 }
 
-/*export function mapStateToProps(state) {
+export function mapStateToProps(state) {
   return {
     commentsPost: state.commentsPost,
   };
@@ -55,4 +55,4 @@ export function mapDispatchToProps(dispatch) {
   export default connect(
     mapStateToProps,
     mapDispatchToProps
-  )(CommentsPost );*/
+  )(CommentsPost );

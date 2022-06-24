@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link } from 'react-router-dom';
-import { getAllUsers } from '../../actions/index';
-import './Users.css';
+import { Link } from "react-router-dom";
+import { getAllUsers } from "../../actions/index";
+import "./Users.css";
 
 export class Users extends Component {
-
   render() {
     return (
       <div className="details">
@@ -19,14 +18,23 @@ export class Users extends Component {
               <th>Ver</th>
             </tr>
           </thead>
-          <tbody>
-           
-          </tbody>
+          <tbody></tbody>
         </table>
       </div>
     );
   }
 }
 
-export default Users
+export function mapStateToProps(state) {
+  return {
+    users: state.users,
+  };
+}
 
+export function mapDispatchToProps(dispatch) {
+  return {
+    getAllCommentsPost: (id) => dispatch(getAllCommentsPost(id)),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Users);
