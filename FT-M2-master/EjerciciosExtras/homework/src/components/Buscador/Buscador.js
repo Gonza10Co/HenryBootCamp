@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { getAllPosts } from "../../actions";
 
 import './Buscador.css';
 
@@ -22,7 +23,8 @@ export class Buscador extends Component {
   }
 
   render() {
-    const {  postsSearch } = this.state;
+    const { postsSearch } = this.state;
+    console.log(postsSearch)
     return (
       <div className= "details">
         <h2>Buscador</h2>
@@ -50,4 +52,7 @@ export class Buscador extends Component {
     );
   }
 }
-export default Buscador;
+
+export const mapStateToProps = (state) => ({ posts: state.posts })
+export const mapDispatchToProps = (dispatch) => ({ getAllPosts: ()=>dispatch(getAllPosts())})
+export default connect(mapStateToProps,mapDispatchToProps)(Buscador);
