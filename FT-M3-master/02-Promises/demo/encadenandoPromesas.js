@@ -16,7 +16,6 @@ var primerMetodo = function() {
    console.log(data);
  })
 
-
 var segundoMetodo = function(datos) {
    var promise = new Promise(function(resolve, reject){
       setTimeout(function() {
@@ -44,4 +43,3 @@ primerMetodo()
    .then(function(datos){
       console.log(datos); //debería ser el 'hola' que pasamos en tercerMetodo
    });
-

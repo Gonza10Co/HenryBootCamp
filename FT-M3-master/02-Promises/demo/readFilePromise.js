@@ -13,45 +13,45 @@ var promise = new Promise(function(resolve, reject) {
   }); 
 });
 
-var nuevaDataPromesa = promise.then(function(data) {
-  var nuevaData = data.split('').splice(0, 100).join('');
-  return nuevaData;
-})
+// var nuevaDataPromesa = promise.then(function(data) {
+//   var nuevaData = data.split('').splice(0, 100).join('');
+//   return nuevaData;
+// })
 
-console.log(promise);
+// console.log(promise);
 
-promise.then(function(data) {
-  console.log('se cumplió la promesa');
-})
-
-
-var lectura;
-fs.readFile('./archivo.txt', 'utf8', function(err, data) { 
-  lectura = data;
-}); 
-
-console.log(lectura);
+// promise.then(function(data) {
+//   console.log('se cumplió la promesa');
+// })
 
 
+// var lectura;
+// fs.readFile('./archivo.txt', 'utf8', function(err, data) { 
+//   lectura = data;
+// }); 
+
+// console.log(lectura);
 
 
 
-   dataBase.verifyUser(username, password, (error, userInfo) => {
-       if (error) {
-           callback(error)
-       }else{
-           dataBase.getRoles(username, (error, roles) => {
-               if (error){
-                   callback(error)
-               }else {
-                   dataBase.logAccess(username, (error) => {
-                       if (error){
-                           callback(error);
-                       }else{
-                           callback(null, userInfo, roles);
-                       }
-                   })
-               }
-           })
-       }
-   })
+
+
+//    dataBase.verifyUser(username, password, (error, userInfo) => {
+//        if (error) {
+//            callback(error)
+//        }else{
+//            dataBase.getRoles(username, (error, roles) => {
+//                if (error){
+//                    callback(error)
+//                }else {
+//                    dataBase.logAccess(username, (error) => {
+//                        if (error){
+//                            callback(error);
+//                        }else{
+//                            callback(null, userInfo, roles);
+//                        }
+//                    })
+//                }
+//            })
+//        }
+//    })
