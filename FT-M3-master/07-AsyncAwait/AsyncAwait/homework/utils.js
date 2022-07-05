@@ -24,7 +24,7 @@ utils.promisifiedReadFile = function (filename) {
 		});
 	});
 };
-
+			
 utils.blue = function (text) {
 	console.log(chalk.blue(text));
 };
@@ -34,3 +34,4 @@ utils.magenta = function (text) {
 };
 
 module.exports = utils;
+
