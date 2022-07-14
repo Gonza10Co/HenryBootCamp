@@ -279,7 +279,6 @@ server.get('/eagerloading', async (req, res) => {
   res.json(allData);
 });
 
-
 server.get('/', (req, res) => {
   res.send('DEMO Sequelize with Express');
 });

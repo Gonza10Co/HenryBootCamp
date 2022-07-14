@@ -1,5 +1,6 @@
-const app = require('./server');
-const { db } = require('./db');
+const app = require("./server");
+const { db } = require("./db");
+// const Character = require("./db/models/Character");
 const PORT = 3000;
 
 app.listen(PORT, () => {
